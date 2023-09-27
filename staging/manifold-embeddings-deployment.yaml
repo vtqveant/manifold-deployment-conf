@@ -1,11 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-  labels:
-    io.portainer.kubernetes.application.name: manifold-embeddings-s
-    io.portainer.kubernetes.application.owner: vtqveant
-    io.portainer.kubernetes.application.stack: manifold-embeddings-s
   name: manifold-embeddings-s
   namespace: default
 spec:
