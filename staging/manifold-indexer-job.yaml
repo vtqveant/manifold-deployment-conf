@@ -16,7 +16,7 @@ spec:
             imagePullPolicy: IfNotPresent
             env:
               - name: S3_API_HOST
-                value: "http://minio"
+                value: "minio.svc.cluster.local"
               - name: S3_API_PORT
                 value: "9000"
               - name: S3_ACCESS_KEY
