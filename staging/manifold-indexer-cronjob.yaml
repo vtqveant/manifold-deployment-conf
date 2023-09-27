@@ -16,7 +16,7 @@ spec:
             imagePullPolicy: Always
             env:
               - name: S3_API_HOST
-                value: "minio.svc.cluster.local"
+                value: "10.43.76.115"
               - name: S3_API_PORT
                 value: "9000"
               - name: S3_ACCESS_KEY
