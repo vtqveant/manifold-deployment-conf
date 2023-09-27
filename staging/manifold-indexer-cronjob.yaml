@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: manifold-indexer-job
+  name: manifold-indexer-cronjob
 spec:
   schedule: "0 * * * *"
   jobTemplate:
@@ -13,7 +13,7 @@ spec:
           containers:
           - name: manifold-indexer-job
             image: harbor.eventflow.ru/library/manifold-indexer-job:latest
-            imagePullPolicy: IfNotPresent
+            imagePullPolicy: Always
             env:
               - name: S3_API_HOST
                 value: "minio.svc.cluster.local"
