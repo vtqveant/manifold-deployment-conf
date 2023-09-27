@@ -20,8 +20,3 @@ spec:
   - hosts:
     - www.eventflow.ru
     secretName: eventflow.ru
-status:
-  loadBalancer:
-    ingress:
-    - ip: 5.187.4.137
-    - ip: 91.228.154.109
