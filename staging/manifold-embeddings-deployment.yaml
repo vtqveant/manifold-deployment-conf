@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - image: harbor.eventflow.ru/library/manifold-embeddings:latest
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           name: manifold-embeddings-s
           resources:
             limits:
