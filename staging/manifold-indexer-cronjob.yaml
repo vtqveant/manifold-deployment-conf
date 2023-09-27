@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: manifold-indexer-cronjob
 spec:
-  schedule: "0/1 * * * *"
+  schedule: "*/1 * * * *"
   jobTemplate:
     spec:
       template:
