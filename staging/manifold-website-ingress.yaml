@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: manifold-website-ingress
+  namespace: default
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: www.eventflow.ru
+    http:
+      paths:
+      - backend:
+          service:
+            name: manifold-website
+            port:
+              number: 12549
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - www.eventflow.ru
+    secretName: eventflow.ru
+status:
+  loadBalancer:
+    ingress:
+    - ip: 5.187.4.137
+    - ip: 91.228.154.109
