@@ -6,6 +6,7 @@ spec:
   schedule: "0 * * * *"
   jobTemplate:
     spec:
+      suspend: true
       template:
         spec:
           imagePullSecrets:
