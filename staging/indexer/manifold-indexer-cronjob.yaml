@@ -12,7 +12,7 @@ spec:
             - name: registry-3
           containers:
           - name: manifold-indexer-job
-            image: harbor.eventflow.ru/library/manifold-indexer-job:5ac5cb6
+            image: harbor.eventflow.ru/library/manifold-indexer-job:7ffa514
             imagePullPolicy: IfNotPresent
             env:
               - name: S3_API_HOST
@@ -23,7 +23,20 @@ spec:
                 value: "Vw4FUH4zzKY62ZYUcSS1"
               - name: S3_SECRET_KEY
                 value: "EUf4skSLyoAfa9qiBnniGIG0HQXms153biNFHGDv"
+              - name: S3_BUCKET
+                value: "literature"
               - name: EMBEDDINGS_ENDPOINT
                 value: "http://manifold-embeddings-s/v1/embeddings"
+              - name: REDIS_HOST
+                value: "10.43.77.4"
+              - name: REDIS_PORT
+                value: "6379"
+              - name: REDIS_USERNAME
+                value: "default"
+              - name: REDIS_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: redis-stack
+                    key: redis-password
           restartPolicy: OnFailure
 
