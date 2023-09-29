@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: manifold-indexer-job-test
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+      - name: registry-3
+      containers:
+      - name: manifold-indexer-job-test
+        image: harbor.eventflow.ru/library/manifold-indexer-job:latest
+        imagePullPolicy: Always
+        env:
+        - name: REDIS_HOST
+          value: "10.43.77.4"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: REDIS_USERNAME
+          value: "default"
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: redis-stack
+              key: redis-password
+        - name: EMBEDDINGS_ENDPOINT
+          value: "http://manifold-embeddings-s/v1/embeddings/"
+        - name: S3_API_HOST
+          value: "10.43.76.115"
+        - name: S3_API_PORT
+          value: "30900"
+        - name: S3_ACCESS_KEY
+          value: "Vw4FUH4zzKY62ZYUcSS1"
+        - name: S3_SECRET_KEY
+          value: "EUf4skSLyoAfa9qiBnniGIG0HQXms153biNFHGDv"
+        - name: S3_BUCKET
+          value: literature
+      restartPolicy: Never
+  backoffLimit: 1
