@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: manifold-indexer-cronjob
 spec:
-  schedule: "0 * * * *"
+  schedule: "0 */3 * * *"
   jobTemplate:
     spec:
       suspend: false
@@ -13,7 +13,7 @@ spec:
             - name: registry-3
           containers:
           - name: manifold-indexer-job
-            image: harbor.eventflow.ru/library/manifold-indexer-job:fd7660c
+            image: harbor.eventflow.ru/library/manifold-indexer-job:ac977f2
             imagePullPolicy: IfNotPresent
             env:
               - name: S3_API_HOST
