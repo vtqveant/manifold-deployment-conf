@@ -4,9 +4,12 @@ metadata:
   name: manifold-indexer-cronjob
 spec:
   schedule: "0 */3 * * *"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
   jobTemplate:
     spec:
-      suspend: false
+      parallelism: 1
+      activeDeadlineSeconds: 3600
       template:
         spec:
           imagePullSecrets:
