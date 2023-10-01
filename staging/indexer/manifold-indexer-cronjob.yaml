@@ -13,7 +13,7 @@ spec:
             - name: registry-3
           containers:
           - name: manifold-indexer-job
-            image: harbor.eventflow.ru/library/manifold-indexer-job:e1b253d
+            image: harbor.eventflow.ru/library/manifold-indexer-job:0502b8c
             imagePullPolicy: IfNotPresent
             env:
               - name: S3_API_HOST
