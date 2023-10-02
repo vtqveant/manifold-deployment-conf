@@ -3,7 +3,8 @@ kind: CronJob
 metadata:
   name: manifold-indexer-cronjob
 spec:
-  schedule: "0 */3 * * *"
+  suspend: true
+  schedule: "0 0 1 * *"
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 1
   jobTemplate:
