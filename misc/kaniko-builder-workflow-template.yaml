@@ -1,0 +1,59 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: kaniko-build
+spec:
+  entrypoint: build
+  arguments: {}
+  volumes:
+    - name: config-json
+      secret:
+        secretName: registry-3
+        items:
+          - key: .dockerconfigjson
+            path: config.json
+  templates:
+    - name: build
+      inputs:
+        parameters:
+          - name: REPO
+          - name: REVISION
+            default: refs/heads/main
+          - name: DOCKERFILE
+            default: Dockerfile
+          - name: IMAGE_NAME
+          - name: TAG
+            default: latest
+          - name: CONTEXT
+            default: .
+        artifacts:
+          - name: source
+            path: /tmp/repo
+            git:
+              repo: '{{ inputs.parameters.REPO }}'
+              revision: '{{ inputs.parameters.REVISION }}'
+              depth: 1
+      outputs: {}
+      metadata: {}
+      container:
+        name: ''
+        image: gcr.io/kaniko-project/executor:v1.7.0
+        command:
+          - /kaniko/executor
+        args:
+          - '--reproducible'
+          - '--context={{ inputs.parameters.CONTEXT }}'
+          - '--dockerfile={{ inputs.parameters.DOCKERFILE }}'
+          - '--destination={{ inputs.parameters.IMAGE_NAME }}:{{ inputs.parameters.TAG }}'
+        workingDir: '{{ inputs.artifacts.source.path }}'
+        resources:
+          limits:
+            cpu: '2'
+            memory: 2Gi
+          requests:
+            cpu: 500m
+            memory: 500Mi
+        volumeMounts:
+          - name: config-json
+            mountPath: /kaniko/.docker
+
