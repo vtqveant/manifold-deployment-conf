@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: manifold-indexer-job-build-
+spec:
+  entryPoint: build
+  templates:
+    - name: build
+      steps:
+        - - name: call-kaniko-builder-template
+            templateRef:
+              name: kaniko-builder-template
+              template: build
+            arguments:
+              parameters:
+                - name: REPO
+                  value: https://github.com/vtqveant/manifold-indexer-job.git
+                - name: REVISION
+                  value: refs/heads/main
+                - name: IMAGE_NAME
+                  value: harbor.eventflow.ru/library/manifold-indexer-job
+                - name: TAG
+                  value: argo
+  volumes:
+    - name: config-json
+      secret:
+        secretName: registry-3
+        items:
+          - key: .dockerconfigjson
+            path: config.json
