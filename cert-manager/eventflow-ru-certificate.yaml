@@ -27,6 +27,7 @@ spec:
     - harbor.eventflow.ru
     - argo.eventflow.ru
     - argocd.eventflow.ru
+    - grafana.eventflow.ru
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
