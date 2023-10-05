@@ -19,4 +19,4 @@ spec:
   tls:
   - hosts:
     - www.eventflow.ru
-    secretName: eventflow.ru
+    secretName: eventflow-ru-tls

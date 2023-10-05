@@ -1,0 +1,32 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: eventflow-ru
+  namespace: default
+spec:
+  secretName: eventflow-ru-tls
+  duration: 2160h # 90d
+  renewBefore: 360h # 15d
+  subject:
+    organizations:
+      - "Eventflow LLC"
+  isCA: false
+  privateKey:
+    algorithm: RSA
+    encoding: PKCS1
+    size: 2048
+    rotationPolicy: Always
+  usages:
+    - server auth
+    - client auth
+  dnsNames:
+    - eventflow.ru
+    - www.eventflow.ru
+    - api.eventflow.ru
+    - minio.eventflow.ru
+    - harbor.eventflow.ru
+    - argo.eventflow.ru
+    - argocd.eventflow.ru
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer

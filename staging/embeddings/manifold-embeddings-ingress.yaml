@@ -19,4 +19,4 @@ spec:
   tls:
   - hosts:
     - api.eventflow.ru
-    secretName: eventflow.ru
+    secretName: eventflow-ru-tls
