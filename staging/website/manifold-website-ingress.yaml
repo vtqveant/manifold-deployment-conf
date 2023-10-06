@@ -16,7 +16,3 @@ spec:
               number: 12549
         path: /
         pathType: Prefix
-  tls:
-  - hosts:
-    - www.eventflow.ru
-    secretName: eventflow-ru-tls

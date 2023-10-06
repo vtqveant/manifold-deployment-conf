@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: eventflow-ru
-  namespace: default
+  namespace: kube-system
 spec:
   secretName: eventflow-ru-tls
   duration: 2160h # 90d

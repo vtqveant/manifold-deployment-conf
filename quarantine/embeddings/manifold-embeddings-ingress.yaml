@@ -16,7 +16,3 @@ spec:
               number: 80
         path: /
         pathType: Prefix
-  tls:
-  - hosts:
-    - api.eventflow.ru
-    secretName: eventflow-ru-tls
