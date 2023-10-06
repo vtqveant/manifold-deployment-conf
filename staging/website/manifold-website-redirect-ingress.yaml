@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: manifold-website-redirect
+  name: manifold-website-redirect-ingress
   namespace: default
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
